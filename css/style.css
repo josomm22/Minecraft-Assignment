@@ -1,0 +1,33 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.row{
+    height: 40px;
+}
+.block{
+    display: inline-block;
+    box-sizing: border-box;
+    border:  1px solid rgb(54, 52, 153);
+    background-color: rgb(73, 164, 248);
+    width: 40px;
+    height: 40px;
+    margin-right: -4px;
+}
+.dirt{
+ background-image: url('https://static.planetminecraft.com/files/resource_media/screenshot/1236/pack_3530346.jpg');
+ background-repeat: no-repeat;
+ background-size: cover;
+}
+.grass{
+    background-image: url('https://lh3.googleusercontent.com/2ZdPa8KBDybnUudpc9yRmaCU3DYHH4SL7gxRTPwyk1oCn_1xCzntDLkb02MChMipFu-N3BzNAtXP2BCiwOl9WgM');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+.rock{
+    
+    background-image: url('http://novask.in/1597263375.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
