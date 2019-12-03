@@ -13,22 +13,24 @@ body{
     width: 40px;
     height: 40px;
     margin-right: -4px;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .dirt{
- background-image: url('https://static.planetminecraft.com/files/resource_media/screenshot/1236/pack_3530346.jpg');
- background-repeat: no-repeat;
- background-size: cover;
+    background-image: url('https://static.planetminecraft.com/files/resource_media/screenshot/1236/pack_3530346.jpg');
 }
 .grass{
     background-image: url('https://lh3.googleusercontent.com/2ZdPa8KBDybnUudpc9yRmaCU3DYHH4SL7gxRTPwyk1oCn_1xCzntDLkb02MChMipFu-N3BzNAtXP2BCiwOl9WgM');
-    background-repeat: no-repeat;
-    background-size: cover;
-
 }
-.rock{
-    
-    background-image: url('http://novask.in/1597263375.png');
-    background-repeat: no-repeat;
-    background-size: cover;
+.rocks{
+    background-image: url('https://lh3.googleusercontent.com/p7BsB3L_98eUe6J8nHqRLxheWdTEN-A3kOL18C4sq8dYEdsL-0OiFjGXussXUw_vqRltF3O0phe0O942t_gx');
 }
-/* push */
+.wood{
+    background-image: url('https://www.tynker.com/minecraft/api/block?id=582cf0f1157d72bc1d8b4574&w=400&h=400&width=400&height=400&mode=contain&format=jpg&quality=75&cache=1m&v=1479340273');
+}
+.leaves{
+    background-image: url('http://lh3.googleusercontent.com/CCz9KvgOn10wgBZOzqezf0_7N60RdiQ7BBRCbLg0CmKV6rXpVkGMws4CObwjEvsRaUZCCXEWVSHJ4VnOzH_zhXc');
+}
+.cloud{
+    background-color: white;
+}
