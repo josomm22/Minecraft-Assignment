@@ -41,4 +41,56 @@ function pointsToId (arr){
     return (`R${rowNum}C${colNum}`)
 }
 
-//testing for janet
+let tilesArray = ['dirt','grass', 'rock'];
+let allBlocks = document.getElementsByClassName('block');
+
+Array.from(allBlocks).forEach(singleBlock => singleBlock.addEventListener('click', function(){
+    tileID = this.id; 
+    tileIDmatrix = idToPoints(tileID);
+    console.log("tile ID:", tileID, "/", "tile ID matrix:", tileIDmatrix);
+    console.log("can implant?", canImplant(tileID, tileIDmatrix));   
+    // return canImplant(tileID, tileIDmatrix);  --remove console log later and retain this return t/f
+}));
+
+function canImplant (tileID, tileIDmatrix) {    
+    if (isEmpty(tileID)){
+        console.log('tile is empty')
+        return hasAdjacentTile(tileIDmatrix);        
+    } else {
+        console.log('tile is occupied');
+        hasAdjacentTile(tileIDmatrix);
+        return false;
+    } 
+}
+
+
+function isEmpty(tileID) {
+    tileToCheck = document.getElementById(tileID);
+    let empty = true;
+    
+    for (let i = 0; i < tilesArray.length; i++) {
+        try {
+            if(tileToCheck.classList.contains(tilesArray[i])) {
+                empty = false;
+                return empty;
+            }; 
+        } catch (error) {
+            return "error";
+        }                  
+    }
+    return empty;
+  
+}
+
+function hasAdjacentTile (tileIDmatrix) {
+    //get adjacents' matrices and convert to ID strings
+    let adjacentTop = pointsToId([tileIDmatrix[0] + 1,  tileIDmatrix[1]]);    
+    let adjacentBottom = pointsToId([tileIDmatrix[0] - 1,  tileIDmatrix[1]]);
+    let adjacentRight = pointsToId([tileIDmatrix[0],  tileIDmatrix[1] + 1]);
+    let adjacentLeft = pointsToId([tileIDmatrix[0],  tileIDmatrix[1] - 1]);
+    console.log("filled top:", !isEmpty(adjacentTop));
+    console.log("filled right:", !isEmpty(adjacentRight));
+    console.log("filled bottom:", !isEmpty(adjacentBottom));    
+    console.log("filled left:", !isEmpty(adjacentLeft));
+    return (!isEmpty(adjacentTop) || !isEmpty(adjacentBottom) || !isEmpty(adjacentRight) || !isEmpty(adjacentLeft));    
+}
