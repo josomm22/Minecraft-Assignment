@@ -68,7 +68,7 @@ function createLeaves(startpoint){
             for (let i = 0; i < direction.length; i++) {
                 let adjacentBlock = checkAround(originArr[o],direction[i])
                 if (adjacentBlock.className === 'block'){
-                    console.log (`${adjacentBlock.id} is a block`);
+                    // console.log (`${adjacentBlock.id} is a block`);
                     if (chance(proba)){
                         originArr.push(adjacentBlock.id);
         
@@ -77,13 +77,13 @@ function createLeaves(startpoint){
             };
             proba += 1
         }
-        console.log(typeof(originArr))
+        // console.log(typeof(originArr))
         let uniqueSet = new Set(originArr)
         originArr = [...uniqueSet];
     }
     grow();
-    console.log(typeof(originArr))
-    console.log(originArr);
+    // console.log(typeof(originArr))
+    // console.log(originArr);
     return originArr;
   
     function chance(prob){
