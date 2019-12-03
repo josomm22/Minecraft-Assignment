@@ -118,7 +118,7 @@ function createLeaves(startpoint){
     }
 }
     
-let tilesArray = ['dirt','grass', 'rock'];
+let tilesArray = ['dirt','grass', 'rocks', 'wood', 'leaves'];
 let allBlocks = document.getElementsByClassName('block');
 
 Array.from(allBlocks).forEach(singleBlock => singleBlock.addEventListener('click', function(){
