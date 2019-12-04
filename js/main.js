@@ -33,7 +33,6 @@ function createGrid() {
     }
 }
 
-
 function idToPoints(id) {
     let x = parseInt(id.slice(1, 3));
     let y = parseInt(id.slice(4));
@@ -47,41 +46,48 @@ function pointsToId(arr) {
     return (`R${rowNum}C${colNum}`)
 }
 
-let selectedTool = "pickaxe";
-//let pressedMouse = false;
-let axe = false;
-let shovel = false;
-let pickaxe = false;
+let selectedTool = "pickaxe"; //default tool
 
+let axeTool = document.getElementById("axe");
+let shovelTool = document.getElementById("shovel");
+let pickaxeTool = document.getElementById("pickaxe");
 
-let box = document.getElementsByClassName("block");
+//function activeToolBg ()
+    /*
+    improve/add later
+    */
 
-document.getElementById("axe").addEventListener('click', function (event) {
-    axe = true;
-    shovel = false;
-    pickaxe = false;
+axeTool.addEventListener('click', function () {    
+    selectedTool = "axe";
+    console.log('active tool:', selectedTool);
+    //function activeToolBg ()
+    axeTool.classList.add('bg-blue');
+    shovelTool.classList.remove('bg-blue');
+    pickaxeTool.classList.remove('bg-blue');
+});
+shovelTool.addEventListener('click', function () {
+    selectedTool = "shovel"
+    console.log('active tool:', selectedTool);
+    //function activeToolBg ()
+    shovelTool.classList.add('bg-blue');
+    axeTool.classList.remove('bg-blue');
+    pickaxeTool.classList.remove('bg-blue');
+});
+pickaxeTool.addEventListener('click', function () {
+    selectedTool = "pickaxe";
+    console.log('active tool:', selectedTool);
+    //function activeToolBg ()
+    pickaxeTool.classList.add('bg-blue');
+    shovelTool.classList.remove('bg-blue');
+    axeTool.classList.remove('bg-blue');
 });
 
-
-document.getElementById("shovel").addEventListener('click', function (event) {
-    axe = false;
-    shovel = true;
-    pickaxe = false;
-});
-
-
-document.getElementById("pickaxe").addEventListener('click', function (event) {
-    axe = false;
-    shovel = false;
-    pickaxe = true;
-});
-
+//set tiles that can be targeted by each tool
 let tools = {
     axe: ["wood", "leaves"],
     pickaxe: ["rocks"],
     shovel: ["dirt", "grass", "leaves"]
 }
-
 
 function flashBgRed() {
     $(`#${selectedTool}`).toggleClass('bg-red');
@@ -97,151 +103,8 @@ function takeTileOut(tileID) {
                 setTimeout(flashBgRed, 1000 * i);
             }
         }
-    }
-    )
+    })
 };
-
-// 	switch(activeTool) {
-// 		case "shovel":
-//             tools[activeTool].forEach(function(){
-//                 if (targetTile.classList.contains(activeToolEl)) {
-//                     targetTile.classList.remove(actoveToolEl);
-//                 } else {
-//                     for(let i = 0; i < 4; i++) {
-//                         setTimeout(flashBgRed(shovel), 1000 * i);
-//                     }   
-//                 }
-//             }
-//             break;
-
-
-
-// 		case "axe":
-// 			if (targetTile.classList.contains('wood') || targetTile.classList.contains('leaves')) {
-//                 targetTile.classList.remove('wood');
-//                 targetTile.classList.remove('leaves');
-// 			} else {
-//                 for(let i = 0; i < 4; i++) {
-//                     setTimeout(flashBgRed(shovel), 1000 * i);
-//                 }   
-//             }
-
-
-
-// 	}
-
-
-// }
-
-// //grass
-// box.addEventListener('click', function () {
-
-//     if (box.classList('grass') && shovel) {
-
-//         box.classList.remove("grass");
-//     } else {
-//         box.addEventListener("mousedown", function (e) {
-//             //pressedMouse = true;
-//             box.classList.add("background-red");
-//         });
-//         box.addEventListener("onmousemove", function (e) {
-//             //pressedMouse = true;
-//             box.classList.add("background-red");
-//         });
-//         box.addEventListener("mouseup", function (e) {
-//             //pressedMouse = false;
-//             box.classList.remove("background-red");
-//         });
-//     }
-// });
-// //dirt
-// box.addEventListener('click', function () {
-
-//     if (box.classList("dirt") && shovel) {
-
-//         box.remove.classList("dirt");
-//     } else {
-//         box.addEventListener("mousedown", function (e) {
-//             //pressedMouse = true;
-//             box.classList.add("background-red");
-//         });
-//         box.addEventListener("onmousemove", function (e) {
-//             //pressedMouse = true;
-//             box.classList.add("background-red");
-//         });
-//         box.addEventListener("mouseup", function (e) {
-//             //pressedMouse = false;
-//             box.classList.remove("background-red");
-//         });
-//     }
-
-// });
-// //tree
-// box.addEventListener('click', function () {
-
-//     if (box.classList("tree") && axe) {
-
-//         box.remove.classList("tree");
-//     } else {
-//         box.addEventListener("mousedown", function (e) {
-//             //pressedMouse = true;
-//             box.classList.add("background-red");
-//         });
-//         box.addEventListener("onmousemove", function (e) {
-//             //pressedMouse = true;
-//             box.classList.add("background-red");
-//         });
-//         box.addEventListener("mouseup", function (e) {
-//             //pressedMouse = false;
-//             box.classList.remove("background-red");
-//         });
-//     }
-
-// });
-// //leave
-// box.addEventListener('click', function () {
-
-//     if (box.classList("leave") && axe) {
-
-//         box.remove.classList("leave");
-//     } else {
-//         box.addEventListener("mousedown", function (e) {
-//             //pressedMouse = true;
-//             box.classList.add("background-red");
-//         });
-//         box.addEventListener("onmousemove", function (e) {
-//             //pressedMouse = true;
-//             box.classList.add("background-red");
-//         });
-//         box.addEventListener("mouseup", function (e) {
-//             //pressedMouse = false;
-//             box.classList.remove("background-red");
-//         });
-//     }
-
-// });
-// //rock
-// box.addEventListener('click', function () {
-
-//     if (box.classList("rock") && pickaxe) {
-
-//         box.remove.classList("rock");
-//     } else {
-//         box.addEventListener("mousedown", function (e) {
-//             //pressedMouse = true;
-//             box.classList.add("background-red");
-//         });
-//         box.addEventListener("onmousemove", function (e) {
-//             //pressedMouse = true;
-//             box.classList.add("background-red");
-//         });
-//         box.addEventListener("mouseup", function (e) {
-//             //pressedMouse = false;
-//             box.classList.remove("background-red");
-//         });
-//     }
-
-// });
 
 function displayElements(ElementLibrary) {
     for (el in ElementLibrary) { //iterates through all the properties in the object ElementLibrary
@@ -316,22 +179,28 @@ function createLeaves(startpoint) {
 
 let tilesArray = ['dirt', 'grass', 'rocks', 'wood', 'leaves'];
 let allBlocks = document.getElementsByClassName('block');
+let inventory = document.getElementById('inventory-block');
+let inventorySelected = false;
 
 Array.from(allBlocks).forEach(singleBlock => singleBlock.addEventListener('click', function () {
     tileID = this.id;
-    bridgeFunc();
+    console.log(tileID); //REMOVE ON FINAL VERSION (FOR CHECKING ONLY)
+    tileAction(tileID);
 }));
 
+//toggle True/False on inventorySelected
+inventory.addEventListener('click', function() {
+    inventorySelected = inventorySelected? false : true;
+});
 
-function bridgeFunc(tileID) {
+function tileAction(tileID) {
     tileIDmatrix = idToPoints(tileID);
 
-    // if tools=active
-    takeTileOut(tileID);
-
-    //if inventory=active
-    return canImplant(tileID, tileIDmatrix);
-
+    if(inventorySelected){
+        return canImplant(tileID, tileIDmatrix);
+    } else { // if tools=active        
+        takeTileOut(tileID);
+    }
 }
 
 function canImplant(tileID, tileIDmatrix) {
@@ -340,7 +209,7 @@ function canImplant(tileID, tileIDmatrix) {
         return hasAdjacentTile(tileIDmatrix);
     } else {
         console.log('tile is occupied');
-        hasAdjacentTile(tileIDmatrix);
+        hasAdjacentTile(tileIDmatrix);  //REMOVE ON FINAL VERSION (FOR CHECKING ONLY)
         return false;
     }
 }
@@ -361,7 +230,6 @@ function isEmpty(tileID) {
         }
     }
     return empty;
-
 }
 
 function hasAdjacentTile(tileIDmatrix) {
@@ -370,9 +238,9 @@ function hasAdjacentTile(tileIDmatrix) {
     let adjacentBottom = pointsToId([tileIDmatrix[0] - 1, tileIDmatrix[1]]);
     let adjacentRight = pointsToId([tileIDmatrix[0], tileIDmatrix[1] + 1]);
     let adjacentLeft = pointsToId([tileIDmatrix[0], tileIDmatrix[1] - 1]);
-    console.log("filled top:", !isEmpty(adjacentTop));
-    console.log("filled right:", !isEmpty(adjacentRight));
-    console.log("filled bottom:", !isEmpty(adjacentBottom));
-    console.log("filled left:", !isEmpty(adjacentLeft));
+    console.log("filled top:", !isEmpty(adjacentTop)); //REMOVE ON FINAL VERSION (FOR CHECKING ONLY)
+    console.log("filled right:", !isEmpty(adjacentRight)); //REMOVE ON FINAL VERSION (FOR CHECKING ONLY)
+    console.log("filled bottom:", !isEmpty(adjacentBottom)); //REMOVE ON FINAL VERSION (FOR CHECKING ONLY)
+    console.log("filled left:", !isEmpty(adjacentLeft)); //REMOVE ON FINAL VERSION (FOR CHECKING ONLY)
     return (!isEmpty(adjacentTop) || !isEmpty(adjacentBottom) || !isEmpty(adjacentRight) || !isEmpty(adjacentLeft));
 };
