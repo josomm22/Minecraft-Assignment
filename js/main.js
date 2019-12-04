@@ -47,6 +47,145 @@ function pointsToId (arr){
     return (`R${rowNum}C${colNum}`)
 }
 
+//let pressedMouse = false;
+let axe = false;
+let shovel = false;
+let pickaxe = false;
+
+
+let box = document.getElementsByClassName("block");
+
+document.getElementById("axe").addEventListener('click', function(event){
+    axe = true;
+    shovel = false;
+    pickaxe = false;
+});
+
+
+document.getElementById("shovel").addEventListener('click', function(event){
+    axe = false;
+    shovel = true;
+    pickaxe = false;
+});
+
+
+document.getElementById("pickaxe").addEventListener('click', function(event){
+    axe = false;
+    shovel = false;
+    pickaxe = true;
+});
+
+//grass
+box.addEventListener('click',function(){
+
+    if (box.classList('grass') && shovel){
+      
+        box.classList.remove("grass");
+    }else{
+            box.addEventListener("mousedown",function(e){
+                //pressedMouse = true;
+                box.classList.add("background-red");
+            });
+            box.addEventListener("onmousemove", function(e){
+                //pressedMouse = true;
+                box.classList.add("background-red");
+            });
+            box.addEventListener("mouseup", function(e){
+                //pressedMouse = false;
+                box.classList.remove("background-red");
+            });
+        }
+});
+//dirt
+box.addEventListener('click',function(){
+
+    if (box.classList("dirt") && shovel){
+    
+    box.remove.classList("dirt");
+    }else{
+        box.addEventListener("mousedown",function(e){
+            //pressedMouse = true;
+            box.classList.add("background-red");
+        });
+        box.addEventListener("onmousemove", function(e){
+            //pressedMouse = true;
+            box.classList.add("background-red");
+        });
+        box.addEventListener("mouseup", function(e){
+            //pressedMouse = false;
+            box.classList.remove("background-red");
+        });
+    }   
+    
+});
+//tree
+box.addEventListener('click',function(){
+
+    if (box.classList("tree") && axe){ 
+ 
+    box.remove.classList("tree");
+    }else{
+        box.addEventListener("mousedown",function(e){
+            //pressedMouse = true;
+            box.classList.add("background-red");
+        });
+        box.addEventListener("onmousemove", function(e){
+            //pressedMouse = true;
+            box.classList.add("background-red");
+        });
+        box.addEventListener("mouseup", function(e){
+            //pressedMouse = false;
+            box.classList.remove("background-red");
+        });
+    }
+    
+});
+//leave
+box.addEventListener('click',function(){
+
+    if (box.classList("leave") && axe){ 
+
+    box.remove.classList("leave");
+    }else{
+        box.addEventListener("mousedown",function(e){
+            //pressedMouse = true;
+            box.classList.add("background-red");
+        });
+        box.addEventListener("onmousemove", function(e){
+            //pressedMouse = true;
+            box.classList.add("background-red");
+        });
+        box.addEventListener("mouseup", function(e){
+            //pressedMouse = false;
+            box.classList.remove("background-red");
+        });
+    }
+    
+});
+//rock
+box.addEventListener('click',function(){
+
+    if (box.classList("rock") && pickaxe){ 
+  
+    box.remove.classList("rock");
+    }else{
+        box.addEventListener("mousedown",function(e){
+            //pressedMouse = true;
+            box.classList.add("background-red");
+        });
+        box.addEventListener("onmousemove", function(e){
+            //pressedMouse = true;
+            box.classList.add("background-red");
+        });
+        box.addEventListener("mouseup", function(e){
+            //pressedMouse = false;
+            box.classList.remove("background-red");
+        });
+    }
+    
+});
+
+=======
 function displayElements(ElementLibrary){
     for (el in ElementLibrary){ //iterates through all the properties in the object ElementLibrary
         for (let i = 0; i < ElementLibrary[el].length; i++) { //itterates over all the items in the array
