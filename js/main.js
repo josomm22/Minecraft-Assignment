@@ -1,11 +1,10 @@
 createGrid();
 
 let items = {
-    rocks: createLeaves('R08C02'),
-    // rocks: createLeaves('R08C17'),
+    rocks: (createLeaves('R08C02')).concat(createLeaves('R08C15')),
     wood: ['R08C05','R09C05','R10C05'] ,
     leaves: createLeaves('R11C05'),
-    cloud: ['R15C10', 'R15C11', 'R15C12', 'R15C13', 'R15C14', 'R15C15', 'R14C14', 'R14C15', 'R16C10', 'R16C11', 'R16C12',],
+    cloud : (createLeaves('R15C09')).concat(createLeaves('R14C12')),
     water: [],
 }
 function createGrid() {
