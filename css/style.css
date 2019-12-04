@@ -2,6 +2,7 @@ body{
     margin: 0;
     padding: 0;
 }
+
 .main-container {
     display: flex;
     flex-direction: row;
@@ -74,4 +75,7 @@ body{
 }
 .cloud{
     background-color: white;
+}
+.bg-red {
+    background-color: red;
 }
