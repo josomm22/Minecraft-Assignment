@@ -2,6 +2,38 @@ body{
     margin: 0;
     padding: 0;
 }
+.main-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.toolbox {
+    display: flex;  
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+    width: 250px;
+}
+
+.tool {
+    background-color: yellow;
+    width: 80px;
+    height: 80px;
+    border: 1px solid gray;
+    margin: 3px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.toolbox-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 50vh;
+    width: 200px;
+    background-color: black;
+}
 .row{
     height: 40px;
 }
@@ -30,6 +62,15 @@ body{
 }
 .leaves{
     background-image: url('http://lh3.googleusercontent.com/CCz9KvgOn10wgBZOzqezf0_7N60RdiQ7BBRCbLg0CmKV6rXpVkGMws4CObwjEvsRaUZCCXEWVSHJ4VnOzH_zhXc');
+}
+#axe {
+    background-image: url("https://gamepedia.cursecdn.com/minecraft_gamepedia/2/2f/Stone_Axe.png?version=fa7f15eef67b417e16bac71bda219173");
+}
+#pickaxe {
+    background-image: url("https://gamepedia.cursecdn.com/minecraft_gamepedia/4/40/Stone_Pickaxe.png?version=3f85d0033bf249dc547d8a81cb8c2b2f");
+}
+#shovel {
+    background-image: url("https://gamepedia.cursecdn.com/minecraft_gamepedia/4/48/Stone_Shovel.png?version=844dcc8887635a748d136970fe5a1719");
 }
 .cloud{
     background-color: white;
