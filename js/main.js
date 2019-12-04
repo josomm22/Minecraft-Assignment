@@ -1,7 +1,8 @@
 createGrid();
 
 let items = {
-    rocks: ['R08C02','R08C03','R08C04','R08C17','R08C18','R09C17','R09C18','R10C17','R10C18',],
+    rocks: createLeaves('R08C02'),
+    // rocks: createLeaves('R08C17'),
     wood: ['R08C05','R09C05','R10C05'] ,
     leaves: createLeaves('R11C05'),
     cloud: ['R15C10','R15C11','R15C12','R15C13','R15C14','R15C15','R14C14','R14C15','R16C10','R16C11','R16C12',],
@@ -66,14 +67,16 @@ function createLeaves(startpoint){
         let direction = ['up','left','right']
         for (let o = 0; o < originArr.length; o++) {
             for (let i = 0; i < direction.length; i++) {
-                let adjacentBlock = checkAround(originArr[o],direction[i])
-                if (adjacentBlock.className === 'block'){
-                    // console.log (`${adjacentBlock.id} is a block`);
-                    if (chance(proba)){
-                        originArr.push(adjacentBlock.id);
-        
-                    }
-                }
+                try{let adjacentBlock = checkAround(originArr[o],direction[i])
+                    if (adjacentBlock.className === 'block'){
+                        // console.log (`${adjacentBlock.id} is a block`);
+                        if (chance(proba)){
+                            originArr.push(adjacentBlock.id);
+            
+                        }
+                    }}
+                catch(error){}
+                
             };
             proba += 1
         }
