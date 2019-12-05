@@ -6,7 +6,7 @@ let items = {
     leaves: createLeaves('R11C05'),
     cloud : (createLeaves('R15C09')).concat(createLeaves('R14C12')),
     water: [],
-}
+};
 function createGrid() {
     let rows = 17;
     let columns = 20;
@@ -31,20 +31,20 @@ function createGrid() {
         }
         $('.container').prepend(rowDiv);
     }
-}
+};
 
 function idToPoints(id) {
     let x = parseInt(id.slice(1, 3));
     let y = parseInt(id.slice(4));
     return [x, y];
-}
+};
 function pointsToId(arr) {
     row = arr[0];
     col = arr[1];
     rowNum = ("0" + row).slice(-2);
     colNum = ("0" + col).slice(-2);
     return (`R${rowNum}C${colNum}`)
-}
+};
 
 let selectedTool = "pickaxe"; //default tool
 
@@ -87,11 +87,11 @@ let tools = {
     axe: ["wood", "leaves"],
     pickaxe: ["rocks"],
     shovel: ["dirt", "grass", "leaves"]
-}
+};
 
 function flashBgRed() {
     $(`#${selectedTool}`).toggleClass('bg-red');
-}
+};
 
 function takeTileOut(tileID) {
     let targetTile = document.getElementById(tileID);
@@ -115,7 +115,7 @@ function displayElements(ElementLibrary) {
             $(`#${blockPosition}`).addClass(`${blockClass}`);
         }
     }
-}
+};
 displayElements(items);
 
 function createLeaves(startpoint) {
@@ -141,7 +141,7 @@ function createLeaves(startpoint) {
         // console.log(typeof(originArr))
         let uniqueSet = new Set(originArr)
         originArr = [...uniqueSet];
-    }
+    };
     grow();
     // console.log(typeof(originArr))
     // console.log(originArr);
@@ -174,10 +174,10 @@ function createLeaves(startpoint) {
 
             default:
                 break;
-        }
+        };
         return (document.getElementById(`${pointsToId(move)}`));
-    }
-}
+    };
+};
 
 let tilesArray = ['dirt', 'grass', 'rocks', 'wood', 'leaves'];
 let allBlocks = document.getElementsByClassName('block');
@@ -203,7 +203,7 @@ function tileAction(tileID) {
     } else { // if tools=active        
         takeTileOut(tileID);
     }
-}
+};
 
 function canImplant(tileID, tileIDmatrix) {
     if (isEmpty(tileID)) {
@@ -214,7 +214,7 @@ function canImplant(tileID, tileIDmatrix) {
         hasAdjacentTile(tileIDmatrix);  //REMOVE ON FINAL VERSION (FOR CHECKING ONLY)
         return false;
     }
-}
+};
 
 
 function isEmpty(tileID) {
@@ -232,7 +232,7 @@ function isEmpty(tileID) {
         }
     }
     return empty;
-}
+};
 
 function hasAdjacentTile(tileIDmatrix) {
     //get adjacents' matrices and convert to ID strings
