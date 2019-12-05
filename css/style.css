@@ -13,8 +13,10 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: red;
     width: 250px;
+    background-image: url('https://wallpaperplay.com/walls/full/4/6/d/241266.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .tool {
@@ -33,7 +35,10 @@ body{
     align-items: center;
     height: 50vh;
     width: 200px;
-    background-color: black;
+    backdrop-filter: blur(2px);
+    background-color: rgba(131, 118, 110, 0.562);
+
+    /* background-color: black; */
 }
 .row{
     height: 40px;
@@ -42,13 +47,16 @@ body{
 .inventory{
     display: inline-block;
     box-sizing: border-box;
-    border:  1px solid rgb(54, 52, 153);
     background-color: rgb(73, 164, 248);
     width: 40px;
     height: 40px;
     margin-right: -4px;
     background-repeat: no-repeat;
     background-size: cover;
+}
+.block:hover{
+    border:  1px solid rgb(54, 52, 153);
+
 }
 .dirt{
     background-image: url('https://static.planetminecraft.com/files/resource_media/screenshot/1236/pack_3530346.jpg');
@@ -82,4 +90,10 @@ body{
 }
 .bg-blue {
     background-color: blue;
+}
+.main-menu-bg{
+    background-image: url('https://i.pinimg.com/originals/96/85/d6/9685d6681bd8d3b3e2d2789cafd3e996.jpg');
+}
+.toolbox{
+    background-image: url('https://wallpaperplay.com/walls/full/4/6/d/241266.jpg');
 }
