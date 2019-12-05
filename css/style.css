@@ -36,7 +36,7 @@ body{
     height: 50vh;
     width: 200px;
     backdrop-filter: blur(2px);
-    background-color: rgba(131, 118, 110, 0.562);
+    background-color: rgba(146, 146, 146, 0.23);
 
     /* background-color: black; */
 }
@@ -50,7 +50,6 @@ body{
     background-color: rgb(73, 164, 248);
     width: 40px;
     height: 40px;
-    margin-right: -4px;
     background-repeat: no-repeat;
     background-size: cover;
 }
