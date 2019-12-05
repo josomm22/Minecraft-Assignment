@@ -46,62 +46,70 @@ function pointsToId(arr) {
     return (`R${rowNum}C${colNum}`)
 };
 
-let selectedTool = "pickaxe"; //default tool
+const axeTool = document.getElementById("axe");
+const shovelTool = document.getElementById("shovel");
+const pickaxeTool = document.getElementById("pickaxe");
 
-let axeTool = document.getElementById("axe");
-let shovelTool = document.getElementById("shovel");
-let pickaxeTool = document.getElementById("pickaxe");
-
-//function activeToolBg ()
-    /*
-    improve/add later
-    */
-
-axeTool.addEventListener('click', function () {    
-    selectedTool = "axe";
-    console.log('active tool:', selectedTool);
-    //function activeToolBg ()
-    axeTool.classList.add('bg-blue');
-    shovelTool.classList.remove('bg-blue');
-    pickaxeTool.classList.remove('bg-blue');
-});
-shovelTool.addEventListener('click', function () {
-    selectedTool = "shovel"
-    console.log('active tool:', selectedTool);
-    //function activeToolBg ()
-    shovelTool.classList.add('bg-blue');
-    axeTool.classList.remove('bg-blue');
-    pickaxeTool.classList.remove('bg-blue');
-});
-pickaxeTool.addEventListener('click', function () {
-    selectedTool = "pickaxe";
-    console.log('active tool:', selectedTool);
-    //function activeToolBg ()
-    pickaxeTool.classList.add('bg-blue');
-    shovelTool.classList.remove('bg-blue');
-    axeTool.classList.remove('bg-blue');
-});
-
-//set tiles that can be targeted by each tool
-let tools = {
-    axe: ["wood", "leaves"],
-    pickaxe: ["rocks"],
-    shovel: ["dirt", "grass", "leaves"]
+class Tool {
+	constructor(type, target, htmlEl) {
+		this.type = type;
+        this.target = target;
+        this.htmlEl = htmlEl;
+    }
 };
 
+//create instances of Tool
+let axe = new Tool("axe", ["wood", "leaves"], axeTool);
+let shovel = new Tool("shovel", ["dirt", "grass", "leaves"], shovelTool);
+let pickaxe = new Tool("pickaxe", ["rocks"], pickaxeTool);
+
+let selectedTool = pickaxe; //default tool
+
+function activeToolBg (selectedTool) {
+    let toolbox = [axe, shovel, pickaxe];
+
+    for(i = 0; i < toolbox.length; i++) {
+        if (toolbox[i].type === selectedTool.type){
+            toolbox[i].htmlEl.classList.add('bg-blue');
+        } else {
+            toolbox[i].htmlEl.classList.remove('bg-blue');
+        }
+    }    
+};
+
+axeTool.addEventListener('click', function () {    
+    selectedTool = axe;
+    console.log('active tool:', selectedTool.type);
+    activeToolBg (selectedTool);
+});
+shovelTool.addEventListener('click', function () {
+    selectedTool = shovel;
+    console.log('active tool:', selectedTool.type);
+    activeToolBg (selectedTool);
+});
+pickaxeTool.addEventListener('click', function () {
+    selectedTool = pickaxe;
+    console.log('active tool:', selectedTool.type);
+    activeToolBg (selectedTool);
+});
+
 function flashBgRed() {
-    $(`#${selectedTool}`).toggleClass('bg-red');
+    $(`#${selectedTool.type}`).toggleClass('bg-red');
 };
 
 function takeTileOut(tileID) {
-    let targetTile = document.getElementById(tileID);
-    tools[selectedTool].forEach(element => {
+    const targetTile = document.getElementById(tileID);
+    selectedTool.target.forEach(element => {
         if (targetTile.classList.contains(element)) {
             targetTile.classList.remove(element);
         } else {
+            selectedTool.htmlEl.classList.remove('bg-blue');
             for (let i = 0; i < 4; i++) {
-                setTimeout(flashBgRed, 1000 * i);
+                setTimeout(flashBgRed, 700 * i);
             }
+            setTimeout(function(){
+                selectedTool.htmlEl.classList.add('bg-blue');
+            }, 3100);
         }
     })
 };
@@ -180,9 +188,9 @@ function createLeaves(startpoint) {
 };
 
 let tilesArray = ['dirt', 'grass', 'rocks', 'wood', 'leaves'];
-let allBlocks = document.getElementsByClassName('block');
-let inventory = document.getElementById('inventory-block');
 let inventorySelected = false;
+const allBlocks = document.getElementsByClassName('block');
+const inventory = document.getElementById('inventory-block');
 
 Array.from(allBlocks).forEach(singleBlock => singleBlock.addEventListener('click', function () {
     tileID = this.id;
@@ -207,18 +215,17 @@ function tileAction(tileID) {
 
 function canImplant(tileID, tileIDmatrix) {
     if (isEmpty(tileID)) {
-        console.log('tile is empty')
+        console.log('tile is empty') //REMOVE ON FINAL VERSION (FOR CHECKING ONLY)
         return hasAdjacentTile(tileIDmatrix);
     } else {
-        console.log('tile is occupied');
+        console.log('tile is occupied'); //REMOVE ON FINAL VERSION (FOR CHECKING ONLY)
         hasAdjacentTile(tileIDmatrix);  //REMOVE ON FINAL VERSION (FOR CHECKING ONLY)
         return false;
     }
 };
 
-
 function isEmpty(tileID) {
-    tileToCheck = document.getElementById(tileID);
+    const tileToCheck = document.getElementById(tileID);
     let empty = true;
 
     for (let i = 0; i < tilesArray.length; i++) {
