@@ -84,11 +84,12 @@ body{
 .cloud{
     background-color: white;
 }
-.bg-red {
-    background-color: red;
-}
+
 .bg-blue {
     background-color: blue;
+}
+.bg-red {
+    background-color: red;
 }
 .main-menu-bg{
     background-image: url('https://i.pinimg.com/originals/96/85/d6/9685d6681bd8d3b3e2d2789cafd3e996.jpg');
