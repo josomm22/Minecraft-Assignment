@@ -1,3 +1,9 @@
+document.getElementById("btn").addEventListener("click", function(){
+	document.getElementById("main").classList.remove("hidden"),
+	document.getElementById("game-explain").classList.add("hidden");
+ });
+
+
 createGrid();
 
 let items = {
