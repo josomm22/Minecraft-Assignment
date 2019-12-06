@@ -60,8 +60,9 @@ const pickaxeTool = document.getElementById("pickaxe");
 
 //create instances of Tool
 let axe = new Tool("axe", ["wood", "leaves"], axeTool);
-let shovel = new Tool("shovel", ["dirt", "grass", "leaves"], shovelTool);
+let shovel = new Tool("shovel", ["dirt", "grass"], shovelTool);
 let pickaxe = new Tool("pickaxe", ["rocks"], pickaxeTool);
+//let toolbox = [axe, shovel, pickaxe];
 
 const allBlocks = document.getElementsByClassName('block');
 const inventoryBox = document.getElementById('inventory-block');
@@ -81,6 +82,11 @@ function activeToolBg(selectedTool) {
         }
     }
 };
+
+// toolbox.forEach(tool => tool.htmlEl.addEventListener('click', function(){
+// 	selectedTool = tool;
+// 	activeToolBg(selectedTool);	
+// }));
 
 axeTool.addEventListener('click', function () {
     selectedTool = axe;
@@ -107,20 +113,20 @@ function updateInventory(element) {
 
 function takeTileOut(tileID) {
     const targetTile = document.getElementById(tileID);
-    selectedTool.target.forEach(element => {
-        if (targetTile.classList.contains(element)) {
-            targetTile.classList.remove(element);
-            updateInventory(element);
-        } else {
-            selectedTool.htmlEl.classList.remove('bg-blue');
-            for (let i = 0; i < 4; i++) {
-                setTimeout(flashBgRed, 700 * i);
-            }
-            setTimeout(function () {
-                selectedTool.htmlEl.classList.add('bg-blue');
-            }, 3100);
+    let element = targetTile.classList[1];
+
+    if(selectedTool.target.includes(element)) {
+        targetTile.className = "block";
+        updateInventory(element);
+    } else {
+        selectedTool.htmlEl.classList.remove('bg-blue');
+        for (let i = 0; i < 4; i++) {
+            setTimeout(flashBgRed, 700 * i);
         }
-    })
+        setTimeout(function () {
+            selectedTool.htmlEl.classList.add('bg-blue');
+        }, 3000);
+    }
 };
 
 function displayElements(ElementLibrary) {
