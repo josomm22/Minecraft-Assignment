@@ -2,9 +2,9 @@ createGrid();
 
 let items = {
     rocks: (createLeaves('R08C02')).concat(createLeaves('R08C15')),
-    wood: ['R08C05','R09C05','R10C05'] ,
+    wood: ['R08C05', 'R09C05', 'R10C05'],
     leaves: createLeaves('R11C05'),
-    cloud : (createLeaves('R15C09')).concat(createLeaves('R14C12')),
+    cloud: (createLeaves('R15C09')).concat(createLeaves('R14C12')),
     water: [],
 };
 function createGrid() {
@@ -47,8 +47,8 @@ function pointsToId(arr) {
 };
 
 class Tool {
-	constructor(type, target, htmlEl) {
-		this.type = type;
+    constructor(type, target, htmlEl) {
+        this.type = type;
         this.target = target;
         this.htmlEl = htmlEl;
     }
@@ -70,33 +70,39 @@ let inventorySelected = false;
 let inventoryItem = [];
 let selectedTool = pickaxe; //default tool
 
-function activeToolBg (selectedTool) {
+function activeToolBg(selectedTool) {
     let toolbox = [axe, shovel, pickaxe];
 
-    for(i = 0; i < toolbox.length; i++) {
-        if (toolbox[i].type === selectedTool.type){
+    for (i = 0; i < toolbox.length; i++) {
+        if (toolbox[i].type === selectedTool.type) {
             toolbox[i].htmlEl.classList.add('bg-blue');
         } else {
             toolbox[i].htmlEl.classList.remove('bg-blue');
         }
-    }    
+    }
 };
 
-axeTool.addEventListener('click', function () {    
+axeTool.addEventListener('click', function () {
     selectedTool = axe;
-    activeToolBg (selectedTool);
+    activeToolBg(selectedTool);
 });
 shovelTool.addEventListener('click', function () {
     selectedTool = shovel;
-    activeToolBg (selectedTool);
+    activeToolBg(selectedTool);
 });
 pickaxeTool.addEventListener('click', function () {
     selectedTool = pickaxe;
-    activeToolBg (selectedTool);
+    activeToolBg(selectedTool);
 });
 
 function flashBgRed() {
     $(`#${selectedTool.type}`).toggleClass('bg-red');
+};
+
+function updateInventory(element) {
+    inventoryItem.shift();
+    inventoryItem.push(element);
+    inventoryBox.className = `inventory ${element}`;
 };
 
 function takeTileOut(tileID) {
@@ -104,15 +110,13 @@ function takeTileOut(tileID) {
     selectedTool.target.forEach(element => {
         if (targetTile.classList.contains(element)) {
             targetTile.classList.remove(element);
-            inventoryItem.shift();
-            inventoryItem.push(element); 
-            inventoryBox.className = `inventory ${element}`;          
+            updateInventory(element);
         } else {
             selectedTool.htmlEl.classList.remove('bg-blue');
             for (let i = 0; i < 4; i++) {
                 setTimeout(flashBgRed, 700 * i);
             }
-            setTimeout(function(){
+            setTimeout(function () {
                 selectedTool.htmlEl.classList.add('bg-blue');
             }, 3100);
         }
@@ -138,16 +142,18 @@ function createLeaves(startpoint) {
         let direction = ['up', 'left', 'right']
         for (let o = 0; o < originArr.length; o++) {
             for (let i = 0; i < direction.length; i++) {
-                try{let adjacentBlock = checkAround(originArr[o],direction[i])
-                    if (adjacentBlock.className === 'block'){
+                try {
+                    let adjacentBlock = checkAround(originArr[o], direction[i])
+                    if (adjacentBlock.className === 'block') {
                         // console.log (`${adjacentBlock.id} is a block`);
-                        if (chance(proba)){
+                        if (chance(proba)) {
                             originArr.push(adjacentBlock.id);
-            
+
                         }
-                    }}
-                catch(error){}
-                
+                    }
+                }
+                catch (error) { }
+
             };
             proba += 1
         }
@@ -198,23 +204,23 @@ Array.from(allBlocks).forEach(singleBlock => singleBlock.addEventListener('click
 }));
 
 //toggle True-False on inventorySelected
-inventoryBox.addEventListener('click', function() {
+inventoryBox.addEventListener('click', function () {
     inventoryBox.classList.add('active');
-    inventorySelected = inventorySelected? false : true;
+    inventorySelected = inventorySelected ? false : true;
 });
 
 function tileAction(tileID) {
     tileIDmatrix = idToPoints(tileID);
 
-    if(inventorySelected){        
-        if(canReplant(tileID, tileIDmatrix)){
+    if (inventorySelected) {
+        if (canReplant(tileID, tileIDmatrix)) {
             document.getElementById(tileID).className = `block ${inventoryItem[0]}`;
             inventoryBox.classList.remove(inventoryItem[0], 'active');
             inventorySelected = false;
         } else {
             return;
         }
-    } else {       
+    } else {
         takeTileOut(tileID);
     }
 };
