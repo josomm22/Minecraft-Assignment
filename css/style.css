@@ -3,7 +3,9 @@ body{
     padding: 0;
     overflow: hidden;
 }
-
+.active {
+    border: 2px solid red;
+}
 .main-container {
     display: flex;
     flex-direction: row;
@@ -57,7 +59,6 @@ body{
 }
 .block:hover{
     border:  1px solid rgb(54, 52, 153);
-
 }
 .dirt{
     background-image: url('https://static.planetminecraft.com/files/resource_media/screenshot/1236/pack_3530346.jpg');

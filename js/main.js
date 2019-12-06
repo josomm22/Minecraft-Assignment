@@ -46,10 +46,6 @@ function pointsToId(arr) {
     return (`R${rowNum}C${colNum}`)
 };
 
-const axeTool = document.getElementById("axe");
-const shovelTool = document.getElementById("shovel");
-const pickaxeTool = document.getElementById("pickaxe");
-
 class Tool {
 	constructor(type, target, htmlEl) {
 		this.type = type;
@@ -58,11 +54,20 @@ class Tool {
     }
 };
 
+const axeTool = document.getElementById("axe");
+const shovelTool = document.getElementById("shovel");
+const pickaxeTool = document.getElementById("pickaxe");
+
 //create instances of Tool
 let axe = new Tool("axe", ["wood", "leaves"], axeTool);
 let shovel = new Tool("shovel", ["dirt", "grass", "leaves"], shovelTool);
 let pickaxe = new Tool("pickaxe", ["rocks"], pickaxeTool);
 
+const allBlocks = document.getElementsByClassName('block');
+const inventoryBox = document.getElementById('inventory-block');
+let tilesArray = ['dirt', 'grass', 'rocks', 'wood', 'leaves'];
+let inventorySelected = false;
+let inventoryItem = [];
 let selectedTool = pickaxe; //default tool
 
 function activeToolBg (selectedTool) {
@@ -79,17 +84,14 @@ function activeToolBg (selectedTool) {
 
 axeTool.addEventListener('click', function () {    
     selectedTool = axe;
-    console.log('active tool:', selectedTool.type);
     activeToolBg (selectedTool);
 });
 shovelTool.addEventListener('click', function () {
     selectedTool = shovel;
-    console.log('active tool:', selectedTool.type);
     activeToolBg (selectedTool);
 });
 pickaxeTool.addEventListener('click', function () {
     selectedTool = pickaxe;
-    console.log('active tool:', selectedTool.type);
     activeToolBg (selectedTool);
 });
 
@@ -102,6 +104,9 @@ function takeTileOut(tileID) {
     selectedTool.target.forEach(element => {
         if (targetTile.classList.contains(element)) {
             targetTile.classList.remove(element);
+            inventoryItem.shift();
+            inventoryItem.push(element); 
+            inventoryBox.className = `inventory ${element}`;          
         } else {
             selectedTool.htmlEl.classList.remove('bg-blue');
             for (let i = 0; i < 4; i++) {
@@ -187,39 +192,37 @@ function createLeaves(startpoint) {
     };
 };
 
-let tilesArray = ['dirt', 'grass', 'rocks', 'wood', 'leaves'];
-let inventorySelected = false;
-const allBlocks = document.getElementsByClassName('block');
-const inventory = document.getElementById('inventory-block');
-
 Array.from(allBlocks).forEach(singleBlock => singleBlock.addEventListener('click', function () {
     tileID = this.id;
-    console.log(tileID); //REMOVE ON FINAL VERSION (FOR CHECKING ONLY)
     tileAction(tileID);
 }));
 
-//toggle True/False on inventorySelected
-inventory.addEventListener('click', function() {
+//toggle True-False on inventorySelected
+inventoryBox.addEventListener('click', function() {
+    inventoryBox.classList.add('active');
     inventorySelected = inventorySelected? false : true;
 });
 
 function tileAction(tileID) {
     tileIDmatrix = idToPoints(tileID);
 
-    if(inventorySelected){
-        return canImplant(tileID, tileIDmatrix);
-    } else { // if tools=active        
+    if(inventorySelected){        
+        if(canReplant(tileID, tileIDmatrix)){
+            document.getElementById(tileID).className = `block ${inventoryItem[0]}`;
+            inventoryBox.classList.remove(inventoryItem[0], 'active');
+            inventorySelected = false;
+        } else {
+            return;
+        }
+    } else {       
         takeTileOut(tileID);
     }
 };
 
-function canImplant(tileID, tileIDmatrix) {
+function canReplant(tileID, tileIDmatrix) {
     if (isEmpty(tileID)) {
-        console.log('tile is empty') //REMOVE ON FINAL VERSION (FOR CHECKING ONLY)
         return hasAdjacentTile(tileIDmatrix);
     } else {
-        console.log('tile is occupied'); //REMOVE ON FINAL VERSION (FOR CHECKING ONLY)
-        hasAdjacentTile(tileIDmatrix);  //REMOVE ON FINAL VERSION (FOR CHECKING ONLY)
         return false;
     }
 };
@@ -243,13 +246,11 @@ function isEmpty(tileID) {
 
 function hasAdjacentTile(tileIDmatrix) {
     //get adjacents' matrices and convert to ID strings
-    let adjacentTop = pointsToId([tileIDmatrix[0] + 1, tileIDmatrix[1]]);
-    let adjacentBottom = pointsToId([tileIDmatrix[0] - 1, tileIDmatrix[1]]);
-    let adjacentRight = pointsToId([tileIDmatrix[0], tileIDmatrix[1] + 1]);
-    let adjacentLeft = pointsToId([tileIDmatrix[0], tileIDmatrix[1] - 1]);
-    console.log("filled top:", !isEmpty(adjacentTop)); //REMOVE ON FINAL VERSION (FOR CHECKING ONLY)
-    console.log("filled right:", !isEmpty(adjacentRight)); //REMOVE ON FINAL VERSION (FOR CHECKING ONLY)
-    console.log("filled bottom:", !isEmpty(adjacentBottom)); //REMOVE ON FINAL VERSION (FOR CHECKING ONLY)
-    console.log("filled left:", !isEmpty(adjacentLeft)); //REMOVE ON FINAL VERSION (FOR CHECKING ONLY)
+    let x = tileIDmatrix[0];
+    let y = tileIDmatrix[1];
+    let adjacentTop = pointsToId([x + 1, y]);
+    let adjacentBottom = pointsToId([x - 1, y]);
+    let adjacentRight = pointsToId([x, y + 1]);
+    let adjacentLeft = pointsToId([x, y - 1]);
     return (!isEmpty(adjacentTop) || !isEmpty(adjacentBottom) || !isEmpty(adjacentRight) || !isEmpty(adjacentLeft));
 };
