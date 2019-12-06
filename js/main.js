@@ -1,3 +1,20 @@
+//Adding theme
+window.addEventListener('load', function(){
+    var newAudio = document.getElementById('audio');
+    newAudio.addEventListener('ended', function() {
+        this.currentTime = 0;
+        this.play();
+    }, false);
+    newAudio.play();
+});
+
+//Start button
+document.getElementById("btn").addEventListener("click", function(){
+	document.getElementById("main").classList.remove("hidden"),
+	document.getElementById("game-explain").classList.add("hidden");
+ });
+
+
 createGrid();
 
 let items = {
