@@ -62,7 +62,7 @@ const pickaxeTool = document.getElementById("pickaxe");
 let axe = new Tool("axe", ["wood", "leaves"], axeTool);
 let shovel = new Tool("shovel", ["dirt", "grass"], shovelTool);
 let pickaxe = new Tool("pickaxe", ["rocks"], pickaxeTool);
-//let toolbox = [axe, shovel, pickaxe];
+let toolbox = [axe, shovel, pickaxe];
 
 const allBlocks = document.getElementsByClassName('block');
 const inventoryBox = document.getElementById('inventory-block');
@@ -72,8 +72,6 @@ let inventoryItem = [];
 let selectedTool = pickaxe; //default tool
 
 function activeToolBg(selectedTool) {
-    let toolbox = [axe, shovel, pickaxe];
-
     for (i = 0; i < toolbox.length; i++) {
         if (toolbox[i].type === selectedTool.type) {
             toolbox[i].htmlEl.classList.add('bg-blue');
@@ -83,23 +81,10 @@ function activeToolBg(selectedTool) {
     }
 };
 
-// toolbox.forEach(tool => tool.htmlEl.addEventListener('click', function(){
-// 	selectedTool = tool;
-// 	activeToolBg(selectedTool);	
-// }));
-
-axeTool.addEventListener('click', function () {
-    selectedTool = axe;
-    activeToolBg(selectedTool);
-});
-shovelTool.addEventListener('click', function () {
-    selectedTool = shovel;
-    activeToolBg(selectedTool);
-});
-pickaxeTool.addEventListener('click', function () {
-    selectedTool = pickaxe;
-    activeToolBg(selectedTool);
-});
+toolbox.forEach(tool => tool.htmlEl.addEventListener('click', function(){
+	selectedTool = tool;
+	activeToolBg(selectedTool);	
+}));
 
 function flashBgRed() {
     $(`#${selectedTool.type}`).toggleClass('bg-red');
