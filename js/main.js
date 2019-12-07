@@ -10,7 +10,9 @@ window.addEventListener('load', function(){
 
 //Start button
 document.getElementById("btn").addEventListener("click", function(){
-	document.getElementById("main").classList.remove("hidden"),
+    document.getElementById("main").classList.remove("hidden"),
+    document.getElementById("rmenu").classList.remove("hidden"),
+
 	document.getElementById("game-explain").classList.add("hidden");
  });
 

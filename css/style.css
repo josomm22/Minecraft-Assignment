@@ -156,12 +156,11 @@ body{
     }
     .responsive-menu{
         display: flex;
-        z-index: 2;
+        z-index: 12;
         top: 0;
         right: 0;
-        position: absolute;
+        position: fixed;
         height: 100%;
-        width: 170px;
         background-color: slateblue;
     }
     .touch-bar{
