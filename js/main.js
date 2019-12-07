@@ -71,20 +71,40 @@ class Tool {
     }
 };
 
+class Inventory {
+	constructor(type, htmlEl) {
+		this.type = type;
+		this.htmlEl = htmlEl;
+		this.count = 0;
+	}
+}
+
 const axeTool = document.getElementById("axe");
 const shovelTool = document.getElementById("shovel");
 const pickaxeTool = document.getElementById("pickaxe");
+const rockHtml = document.getElementById('inventory-rock');
+const dirtHtml = document.getElementById('inventory-dirt');
+const grassHtml = document.getElementById('inventory-grass');
+const leavesHtml = document.getElementById('inventory-leaves');
+const woodHtml = document.getElementById('inventory-wood');
+const invItems = document.getElementsByClassName("inventory");
+const allBlocks = document.getElementsByClassName('block');
 
-//create instances of Tool
 let axe = new Tool("axe", ["wood", "leaves"], axeTool);
 let shovel = new Tool("shovel", ["dirt", "grass"], shovelTool);
 let pickaxe = new Tool("pickaxe", ["rocks"], pickaxeTool);
 let toolbox = [axe, shovel, pickaxe];
+let invRock = new Inventory("rocks", rockHtml);
+let invDirt = new Inventory("dirt", dirtHtml);
+let invGrass = new Inventory("grass", grassHtml);
+let invLeaves = new Inventory("leaves", leavesHtml);
+let invWood = new Inventory("wood", woodHtml);
+let inventoryList = [invRock, invDirt, invGrass, invLeaves, invWood];
 
-const allBlocks = document.getElementsByClassName('block');
 let tilesArray = ['dirt', 'grass', 'rocks', 'wood', 'leaves'];
-let inventorySelected = false;
 let selectedTool = pickaxe; //default tool
+isInventoryActive = false;
+selectedInventory = "";
 
 function activeToolBg(selectedTool) {
     for (i = 0; i < toolbox.length; i++) {
@@ -96,43 +116,30 @@ function activeToolBg(selectedTool) {
     }
 };
 
-toolbox.forEach(tool => tool.htmlEl.addEventListener('click', function(){
-	selectedTool = tool;
-	activeToolBg(selectedTool);	
-}));
-
 function flashBgRed() {
     $(`#${selectedTool.type}`).toggleClass('bg-red');
 };
 
-const rockHtml = document.getElementById('inventory-rock');
-const dirtHtml = document.getElementById('inventory-dirt');
-const grassHtml = document.getElementById('inventory-grass');
-const leavesHtml = document.getElementById('inventory-leaves');
-const woodHtml = document.getElementById('inventory-wood');
-const invItems = document.getElementsByClassName("inventory");
-
-class Inventory {
-	constructor(type, htmlEl) {
-		this.type = type;
-		this.htmlEl = htmlEl;
-		this.count = 0;
-	}
-}
-
-let invRock = new Inventory("rocks", rockHtml);
-let invDirt = new Inventory("dirt", dirtHtml);
-let invGrass = new Inventory("grass", grassHtml);
-let invLeaves = new Inventory("leaves", leavesHtml);
-let invWood = new Inventory("wood", woodHtml);
-let inventoryList = [invRock, invDirt, invGrass, invLeaves, invWood];
-isInventoryActive = false;
-selectedInventory = "";
+toolbox.forEach(tool => tool.htmlEl.addEventListener('click', function(){
+    selectedTool = tool;
+    if (isInventoryActive) {
+        // isInventoryActive = false;
+        // selectedInventory.htmlEl.classList.remove('active');
+        deactivateInventory();
+    }    
+	activeToolBg(selectedTool);	
+}));
 
 inventoryList.forEach(invItem => invItem.htmlEl.addEventListener('click', function(){
     if(isInventoryActive) {
-        isInventoryActive = false;
-        invItem.htmlEl.classList.remove('active');
+        if (selectedInventory === invItem) {
+            // isInventoryActive = false;
+            // selectedInventory.htmlEl.classList.remove('active');
+            deactivateInventory();
+        } else {
+            selectedInventory = invItem;
+            activeInventory(selectedInventory);
+        }
     } else {
         if (invItem.count > 0) {
             selectedInventory = invItem;
@@ -141,6 +148,11 @@ inventoryList.forEach(invItem => invItem.htmlEl.addEventListener('click', functi
         }
     }
 }));
+
+function deactivateInventory() {
+    isInventoryActive = false;
+    selectedInventory.htmlEl.classList.remove('active');
+}
 
 function increaseInventory(element) {
 	for (i = 0; i < inventoryList.length; i++) {
@@ -158,18 +170,19 @@ function minusInventory () {
 	if (selectedInventory.count === 0) {
         selectedInventory.htmlEl.innerHTML = "";
         selectedInventory.htmlEl.classList.remove(selectedInventory.type);
-        selectedInventory.htmlEl.classList.remove('active');
-        isInventoryActive = false;
+        deactivateInventory();
+        // selectedInventory.htmlEl.classList.remove('active');
+        // isInventoryActive = false;
 	} else {
 		selectedInventory.htmlEl.innerHTML = selectedInventory.count;
 	}
 }
 
-function unselectInventories(){
-	inventoryList.forEach(item => function(){
-		item.htmlEl.classList.remove('active');
-	});
-}
+// function unselectInventories(){
+// 	inventoryList.forEach(item => function(){
+// 		item.htmlEl.classList.remove('active');
+// 	});
+// }
 
 function activeInventory(selectedInventory) {
 	for(i = 0; i < inventoryList.length; i++){
@@ -286,8 +299,8 @@ function tileAction(tileID) {
         if (canReplant(tileID, tileIDmatrix)) {
             document.getElementById(tileID).className = `block ${selectedInventory.type}`;
 			minusInventory();			
-            unselectInventories();
-            inventorySelected = false;
+            //unselectInventories();
+            // isInventoryActive = false;
         } else {
             return;
         }
