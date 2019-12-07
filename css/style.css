@@ -157,35 +157,6 @@ body{
     .block:after{
         padding-bottom: 100%;
     }
-    .responsive-menu{
-        display: flex;
-        z-index: 12;
-        top: 0;
-        right: 0;
-        position: fixed;
-        height: 100%;
-        background-color: slateblue;
-    }
-    .touch-bar{
-        display: flex;
-        align-items: center;
-        width: 20px;
-        background-color: springgreen;
-    }
-    .floater{
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        background-color: tomato;
-        height: 100px;
-        width: 100%;
-    }
-    .floater div{
-        display: inline-block;
-        height: 80px;
-        width: 10%;
-        background-color: black;
-    }
 }
 
 .toolbox{

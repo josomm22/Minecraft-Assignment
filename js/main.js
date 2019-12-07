@@ -12,8 +12,6 @@ document.getElementById("btn").addEventListener("click", function(){
     var audio = document.getElementById('audio');
     audio.play();
     document.getElementById("main").classList.remove("hidden"),
-    document.getElementById("rmenu").classList.remove("hidden"),
-
 	document.getElementById("game-explain").classList.add("hidden");
  });
 
