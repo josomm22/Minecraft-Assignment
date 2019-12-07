@@ -1,15 +1,16 @@
 //Adding theme
-window.addEventListener('load', function(){
-    var newAudio = document.getElementById('audio');
-    newAudio.addEventListener('ended', function() {
+$(document).ready(function(){
+    var audio = document.getElementById('audio');
+    audio.addEventListener('ended', function() {
         this.currentTime = 0;
         this.play();
     }, false);
-    newAudio.play();
 });
 
 //Start button
 document.getElementById("btn").addEventListener("click", function(){
+    var audio = document.getElementById('audio');
+    audio.play();
     document.getElementById("main").classList.remove("hidden"),
     document.getElementById("rmenu").classList.remove("hidden"),
 
