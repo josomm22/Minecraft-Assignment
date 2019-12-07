@@ -110,6 +110,35 @@ let selectedTool = pickaxe; //default tool
 isInventoryActive = false;
 selectedInventory = "";
 
+toolbox.forEach(tool => tool.htmlEl.addEventListener('click', function(){
+    selectedTool = tool;
+    if (isInventoryActive) {
+        deactivateInventory();
+    }    
+	activeToolBg(selectedTool);	
+}));
+
+inventoryList.forEach(invItem => invItem.htmlEl.addEventListener('click', function(){
+    if(isInventoryActive) {
+        if (selectedInventory === invItem) {
+            deactivateInventory();
+        } else {
+            selectedInventory.htmlEl.classList.remove('active');
+            activateInventory(invItem);
+        }
+    } else {
+        if (invItem.count > 0) {
+            activateInventory(invItem);
+            isInventoryActive = true;
+        }
+    }
+}));
+
+Array.from(allBlocks).forEach(singleBlock => singleBlock.addEventListener('click', function () {
+    tileID = this.id;
+    tileAction(tileID);
+}));
+
 function activeToolBg(selectedTool) {
     for (i = 0; i < toolbox.length; i++) {
         if (toolbox[i].type === selectedTool.type) {
@@ -124,30 +153,10 @@ function flashBgRed() {
     $(`#${selectedTool.type}`).toggleClass('bg-red');
 };
 
-toolbox.forEach(tool => tool.htmlEl.addEventListener('click', function(){
-    selectedTool = tool;
-    if (isInventoryActive) {
-        deactivateInventory();
-    }    
-	activeToolBg(selectedTool);	
-}));
-
-inventoryList.forEach(invItem => invItem.htmlEl.addEventListener('click', function(){
-    if(isInventoryActive) {
-        if (selectedInventory === invItem) {
-            deactivateInventory();
-        } else {
-            selectedInventory = invItem;
-            activeInventory(selectedInventory);
-        }
-    } else {
-        if (invItem.count > 0) {
-            selectedInventory = invItem;
-            isInventoryActive = true;		
-            activeInventory(selectedInventory);
-        }
-    }
-}));
+function activateInventory(item) {
+    selectedInventory = item;
+    item.htmlEl.classList.add('active');	
+}
 
 function deactivateInventory() {
     isInventoryActive = false;
@@ -173,16 +182,6 @@ function minusInventory () {
         deactivateInventory();
 	} else {
 		selectedInventory.htmlEl.innerHTML = selectedInventory.count;
-	}
-}
-
-function activeInventory(selectedInventory) {
-	for(i = 0; i < inventoryList.length; i++){
-		if (inventoryList[i].type === selectedInventory.type) {
-			inventoryList[i].htmlEl.classList.add('active');
-		} else {
-			inventoryList[i].htmlEl.classList.remove('active');
-		}
 	}
 }
 
@@ -279,10 +278,7 @@ function createLeaves(startpoint) {
     };
 };
 
-Array.from(allBlocks).forEach(singleBlock => singleBlock.addEventListener('click', function () {
-    tileID = this.id;
-    tileAction(tileID);
-}));
+
 
 function tileAction(tileID) {
     tileIDmatrix = idToPoints(tileID);
