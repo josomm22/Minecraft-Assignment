@@ -79,6 +79,9 @@ body{
 .leaves{
     background-image: url('http://lh3.googleusercontent.com/CCz9KvgOn10wgBZOzqezf0_7N60RdiQ7BBRCbLg0CmKV6rXpVkGMws4CObwjEvsRaUZCCXEWVSHJ4VnOzH_zhXc');
 }
+.water{
+    background-image: url("https://d31sxl6qgne2yj.cloudfront.net/wordpress/wp-content/uploads/20190617153615/Minecraft-Water.jpg");
+}
 #axe {
     background-image: url("https://gamepedia.cursecdn.com/minecraft_gamepedia/2/2f/Stone_Axe.png?version=fa7f15eef67b417e16bac71bda219173");
 }

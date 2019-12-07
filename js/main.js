@@ -27,6 +27,7 @@ let items = {
     cloud: (createLeaves('R15C09')).concat(createLeaves('R14C12')),
     water: [],
 };
+
 function createGrid() {
     let rows = 17;
     let columns = 20;
@@ -38,9 +39,13 @@ function createGrid() {
             if (r < 7) {
                 colDiv = $('<div/>').attr('class', 'block dirt');
             }
-            else if (r === 7) {
-                colDiv = $('<div/>').attr('class', 'block grass');
-
+            else if (r == 7) {
+                colDiv = $('<div/>').attr('class', 'block');
+                if (c >= 6 && c <= 11) {
+                    colDiv.addClass("water");
+                } else {
+                    colDiv.addClass("grass");
+                }
             }
             else {
                 colDiv = $('<div/>').attr('class', 'block');
@@ -91,6 +96,7 @@ const dirtHtml = document.getElementById('inventory-dirt');
 const grassHtml = document.getElementById('inventory-grass');
 const leavesHtml = document.getElementById('inventory-leaves');
 const woodHtml = document.getElementById('inventory-wood');
+const waterHtml = document.getElementById('inventory-water');
 const invItems = document.getElementsByClassName("inventory");
 const allBlocks = document.getElementsByClassName('block');
 
@@ -104,9 +110,10 @@ let invDirt = new Inventory("dirt", dirtHtml);
 let invGrass = new Inventory("grass", grassHtml);
 let invLeaves = new Inventory("leaves", leavesHtml);
 let invWood = new Inventory("wood", woodHtml);
-let inventoryList = [invRock, invDirt, invGrass, invLeaves, invWood];
+let invWater = new Inventory("water", waterHtml);
+let inventoryList = [invRock, invDirt, invGrass, invLeaves, invWood, invWater];
 
-let tilesArray = ['dirt', 'grass', 'rocks', 'wood', 'leaves'];
+let tilesArray = ['dirt', 'grass', 'rocks', 'wood', 'leaves','water'];
 let selectedTool = pickaxe; //default tool
 isInventoryActive = false;
 selectedInventory = "";
