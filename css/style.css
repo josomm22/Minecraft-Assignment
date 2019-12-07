@@ -211,47 +211,33 @@ body{
     flex-direction: row;
     align-items: center;
 }
-.explain-shovel{
-	background-image: url("https://gamepedia.cursecdn.com/minecraft_gamepedia/4/48/Stone_Shovel.png?version=844dcc8887635a748d136970fe5a1719");
+
+
+.explain-shovel,
+.explain-axe,
+.explain-pickaxe,
+.explain-bucket{
 	background-position-x:center;
 	background-position-y: center;
 	background-size: cover;
 	background-repeat: no-repeat;
 	width: 80px;
     height: 80px;
-  
 }
 
-.explain-axe{
-	background-image: url("https://gamepedia.cursecdn.com/minecraft_gamepedia/2/2f/Stone_Axe.png?version=fa7f15eef67b417e16bac71bda219173");
-	background-position-x:center;
-	background-position-y: center;
-	background-size: cover;
-	background-repeat: no-repeat;
-	width: 80px;
-    height: 80px;
-   
+.explain-shovel{
+	background-image: url("https://gamepedia.cursecdn.com/minecraft_gamepedia/4/48/Stone_Shovel.png?version=844dcc8887635a748d136970fe5a1719");  
+}
+.explain-axe {
+	background-image: url("https://gamepedia.cursecdn.com/minecraft_gamepedia/2/2f/Stone_Axe.png?version=fa7f15eef67b417e16bac71bda219173");   
 }
 
 .explain-pickaxe{
 	background-image: url("https://gamepedia.cursecdn.com/minecraft_gamepedia/4/40/Stone_Pickaxe.png?version=3f85d0033bf249dc547d8a81cb8c2b2f");
-	background-position-x:center;
-	background-position-y: center;
-	background-size: cover;
-	background-repeat: no-repeat;
-	width: 80px;
-    height: 80px;
- 
 }
+
 .explain-bucket{
 	background-image: url("https://gamepedia.cursecdn.com/minecraft_gamepedia/thumb/d/d3/Water_Bucket.png/150px-Water_Bucket.png?version=3f5e73376c8c772ecb4657e0c130afe1");
-	background-position-x:center;
-	background-position-y: center;
-	background-size: cover;
-	background-repeat: no-repeat;
-	width: 80px;
-    height: 80px;
-  
 }
 
 
