@@ -51,11 +51,17 @@ body{
 .inventory{
     display: inline-block;
     box-sizing: border-box;
-    background-color: rgb(73, 164, 248);
     width: 40px;
     height: 40px;
     background-repeat: no-repeat;
     background-size: cover;
+}
+.block{
+    background-color: rgb(73, 164, 248);
+
+}
+.inventory{
+    background-color: rgba(255,255,255,0.2);
 }
 #inventory .inventory {
     color: white;
