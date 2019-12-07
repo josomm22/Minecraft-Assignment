@@ -57,6 +57,10 @@ body{
     background-repeat: no-repeat;
     background-size: cover;
 }
+#inventory .inventory {
+    color: white;
+    font-size: 1.5rem;
+}
 .block:hover{
     border:  1px solid rgb(54, 52, 153);
 }
