@@ -10,6 +10,10 @@
 </head>
 
 <body>
+    <audio id="audio">
+        <source src="/Audio/minecraft.mp3" type="audio/mpeg" >
+    </audio>
+
     <div class="main-container hidden" id="main">
         <div class="bg"></div>
         <div class="container">
@@ -20,9 +24,14 @@
                 <div id="axe" class="tool"></div>
                 <div id="shovel" class="tool"></div>
                 <div id="pickaxe" class="tool bg-blue"></div>
+                <div id="bucket" class="tool"></div>
             </div>
             <div id="inventory" class="toolbox-item">
-                <div id="inventory-block" class="inventory"></div>
+                <div id="inventory-rock" class="inventory"></div>
+                <div id="inventory-dirt" class="inventory"></div>
+                <div id="inventory-grass" class="inventory"></div>
+                <div id="inventory-leaves" class="inventory"></div>
+                <div id="inventory-wood" class="inventory"></div>
             </div>
         </div>
     </div>
@@ -66,6 +75,8 @@
             </div>
         </div>
     </div>
+
+   
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="./js/main.js"></script>
