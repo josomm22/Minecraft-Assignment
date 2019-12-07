@@ -84,6 +84,7 @@ class Inventory {
 const axeTool = document.getElementById("axe");
 const shovelTool = document.getElementById("shovel");
 const pickaxeTool = document.getElementById("pickaxe");
+const bucketTool = document.getElementById("bucket");
 const rockHtml = document.getElementById('inventory-rock');
 const dirtHtml = document.getElementById('inventory-dirt');
 const grassHtml = document.getElementById('inventory-grass');
@@ -95,7 +96,8 @@ const allBlocks = document.getElementsByClassName('block');
 let axe = new Tool("axe", ["wood", "leaves"], axeTool);
 let shovel = new Tool("shovel", ["dirt", "grass"], shovelTool);
 let pickaxe = new Tool("pickaxe", ["rocks"], pickaxeTool);
-let toolbox = [axe, shovel, pickaxe];
+let bucket = new Tool("bucket", ["water"], bucketTool);
+let toolbox = [axe, shovel, pickaxe, bucket];
 let invRock = new Inventory("rocks", rockHtml);
 let invDirt = new Inventory("dirt", dirtHtml);
 let invGrass = new Inventory("grass", grassHtml);
@@ -125,8 +127,6 @@ function flashBgRed() {
 toolbox.forEach(tool => tool.htmlEl.addEventListener('click', function(){
     selectedTool = tool;
     if (isInventoryActive) {
-        // isInventoryActive = false;
-        // selectedInventory.htmlEl.classList.remove('active');
         deactivateInventory();
     }    
 	activeToolBg(selectedTool);	
@@ -135,8 +135,6 @@ toolbox.forEach(tool => tool.htmlEl.addEventListener('click', function(){
 inventoryList.forEach(invItem => invItem.htmlEl.addEventListener('click', function(){
     if(isInventoryActive) {
         if (selectedInventory === invItem) {
-            // isInventoryActive = false;
-            // selectedInventory.htmlEl.classList.remove('active');
             deactivateInventory();
         } else {
             selectedInventory = invItem;
@@ -173,18 +171,10 @@ function minusInventory () {
         selectedInventory.htmlEl.innerHTML = "";
         selectedInventory.htmlEl.classList.remove(selectedInventory.type);
         deactivateInventory();
-        // selectedInventory.htmlEl.classList.remove('active');
-        // isInventoryActive = false;
 	} else {
 		selectedInventory.htmlEl.innerHTML = selectedInventory.count;
 	}
 }
-
-// function unselectInventories(){
-// 	inventoryList.forEach(item => function(){
-// 		item.htmlEl.classList.remove('active');
-// 	});
-// }
 
 function activeInventory(selectedInventory) {
 	for(i = 0; i < inventoryList.length; i++){
