@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
+
 <body>
     <div class="main-container hidden" id="main">
         <div class="bg"></div>
@@ -31,16 +33,36 @@
         </div>
         <div class="explain-tool">
             <div class="shovel-text">
-                <span class="explain-shovel"></span> 
+                <span class="explain-shovel"></span>
                 <span class="text">Use the shovel to destroy block of dirt and grass</span>
             </div>
             <div class="axe-text">
                 <span class="explain-axe"></span>
-                <span class="text">Axes are tools used to ease the process of collecting wood-type blocks <br> or some plants or for stripping wood</span>
+                <span class="text">Axes are tools used to ease the process of collecting wood-type blocks <br> or some
+                    plants or for stripping wood</span>
             </div>
             <div class="pickaxe-text">
                 <span class="explain-pickaxe"></span>
                 <span class="text">Use the pickaxe to mine stone-type blocks and ores</span>
+            </div>
+        </div>
+    </div>
+    <div class="responsive-menu">
+        <div class="touch-bar">
+            <div class="floater">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+        <div class="toolbox">
+            <div id="tools" class="toolbox-item">
+                <div id="axe" class="tool"></div>
+                <div id="shovel" class="tool"></div>
+                <div id="pickaxe" class="tool bg-blue"></div>
+            </div>
+            <div id="inventory" class="toolbox-item">
+                <div id="inventory-block" class="inventory"></div>
             </div>
         </div>
     </div>

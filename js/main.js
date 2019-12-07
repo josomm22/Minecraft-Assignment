@@ -266,3 +266,8 @@ function hasAdjacentTile(tileIDmatrix) {
     let adjacentLeft = pointsToId([x, y - 1]);
     return (!isEmpty(adjacentTop) || !isEmpty(adjacentBottom) || !isEmpty(adjacentRight) || !isEmpty(adjacentLeft));
 };
+
+$('.floater').on('click',function(){
+    $(".toolbox").animate({width:'toggle'},150);
+
+})
