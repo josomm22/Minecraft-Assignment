@@ -88,6 +88,9 @@ body{
 #shovel {
     background-image: url("https://gamepedia.cursecdn.com/minecraft_gamepedia/4/48/Stone_Shovel.png?version=844dcc8887635a748d136970fe5a1719");
 }
+#bucket{
+    background-image: url("https://gamepedia.cursecdn.com/minecraft_gamepedia/thumb/d/d3/Water_Bucket.png/150px-Water_Bucket.png?version=3f5e73376c8c772ecb4657e0c130afe1");
+}
 .cloud{
     background-color: white;
 }
@@ -114,6 +117,9 @@ body{
     animation-play-state: running; 
 
 }
+.responsive-menu{
+    display: none;
+}
 
 @keyframes bgpan{
     
@@ -121,6 +127,12 @@ body{
     100% {transform: translateX(0%); }
 }
 @media screen and (max-width: 1040px){
+    body{
+        overflow: auto;
+    }
+    .main-container{
+        background-color: saddlebrown;
+    }
     .bg{
         display: none;
     }
@@ -132,21 +144,50 @@ body{
         flex-direction: column;
     }
     .row{
-        height: 5%;
+        /* height: 5%; */
         width: 100vw;
     }
     .block{
-        width: 5%;
+        width: 4.65%;
         height: 100%;
     }
     .block:after{
         padding-bottom: 100%;
     }
+    .responsive-menu{
+        display: flex;
+        z-index: 12;
+        top: 0;
+        right: 0;
+        position: fixed;
+        height: 100%;
+        background-color: slateblue;
+    }
+    .touch-bar{
+        display: flex;
+        align-items: center;
+        width: 20px;
+        background-color: springgreen;
+    }
+    .floater{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background-color: tomato;
+        height: 100px;
+        width: 100%;
+    }
+    .floater div{
+        display: inline-block;
+        height: 80px;
+        width: 10%;
+        background-color: black;
+    }
 }
 
-/* .toolbox{
+.toolbox{
     background-image: url('https://wallpaperplay.com/walls/full/4/6/d/241266.jpg');
-} */
+}
 
 
 

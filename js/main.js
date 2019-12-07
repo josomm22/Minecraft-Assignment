@@ -10,7 +10,9 @@ window.addEventListener('load', function(){
 
 //Start button
 document.getElementById("btn").addEventListener("click", function(){
-	document.getElementById("main").classList.remove("hidden"),
+    document.getElementById("main").classList.remove("hidden"),
+    document.getElementById("rmenu").classList.remove("hidden"),
+
 	document.getElementById("game-explain").classList.add("hidden");
  });
 
@@ -344,3 +346,8 @@ function hasAdjacentTile(tileIDmatrix) {
     let adjacentLeft = pointsToId([x, y - 1]);
     return (!isEmpty(adjacentTop) || !isEmpty(adjacentBottom) || !isEmpty(adjacentRight) || !isEmpty(adjacentLeft));
 };
+
+$('.floater').on('click',function(){
+    $(".toolbox").animate({width:'toggle'},150);
+
+})
