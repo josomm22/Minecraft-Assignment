@@ -32,28 +32,38 @@
                 <div id="inventory-grass" class="inventory"></div>
                 <div id="inventory-leaves" class="inventory"></div>
                 <div id="inventory-wood" class="inventory"></div>
+                <div id="inventory-water" class="inventory"></div>
             </div>
         </div>
     </div>
 
     <div id="game-explain">
         <div class="start-button">
-            <button id="btn" type="button">Start</button>
+            <button id="btn" type="button">Play</button>
         </div>
         <div class="explain-tool">
-            <div class="shovel-text">
-                <span class="explain-shovel"></span>
-                <span class="text">Use the shovel to destroy block of dirt and grass</span>
+            <div>
+                <div class="explain">
+                   <div class="explain-shovel"></div>
+                    <div class="text">Use the shovel to destroy block of dirt and grass</div>
+                </div>
+                <div class="explain">
+                    <div class="explain-axe"></div>
+                    <div class="text">Use the axe to ease the process of collecting wood-type blocks <br> or some plants or for stripping wood</div>
+                </div>
             </div>
-            <div class="axe-text">
-                <span class="explain-axe"></span>
-                <span class="text">Axes are tools used to ease the process of collecting wood-type blocks <br> or some
-                    plants or for stripping wood</span>
+            <div>
+                <div class="explain">
+                    <div class="explain-pickaxe"></div>
+                    <div class="text">Use the pickaxe to mine stone-type blocks and ores</div>
+                </div>
+                <div class="explain">
+                    <div class="explain-bucket"></div>
+                    <div class="text">Use the bucket to replace dirt with water, emptying the bucket</div>
+                </div>
+             
             </div>
-            <div class="pickaxe-text">
-                <span class="explain-pickaxe"></span>
-                <span class="text">Use the pickaxe to mine stone-type blocks and ores</span>
-            </div>
+   
         </div>
     </div>
     <div class="responsive-menu hidden" id="rmenu">
@@ -75,8 +85,6 @@
             </div>
         </div>
     </div>
-
-   
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="./js/main.js"></script>
