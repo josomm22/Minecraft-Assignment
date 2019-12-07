@@ -244,3 +244,28 @@ body{
 }
 
 
+@media screen and (max-width: 1024px) {
+    #game-explain {
+        background-image: url('../images/minecraft.png');
+       
+        background-size: contain;
+        /* background-position-y: -60px; */
+    }    
+    body{
+        background-color: #00541a;
+    }
+    .explain-tool {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 910px) {
+    #game-explain {
+        background-image: url('https://i.pinimg.com/originals/87/2c/54/872c546e1a83b30774f00529d48f2d2a.jpg');
+        background-color: #00541a;
+        background-size: contain;
+        background-position-y: center;
+    }    
+}
