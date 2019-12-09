@@ -214,7 +214,6 @@ function displayElements(ElementLibrary) {
         for (let i = 0; i < ElementLibrary[el].length; i++) { //itterates over all the items in the array
             let blockClass = el;
             let blockPosition = ElementLibrary[el][i];
-            // console.log(`${blockClass} goes to pos ${blockPosition}`);
             $(`#${blockPosition}`).addClass(`${blockClass}`);
         }
     }
@@ -243,13 +242,10 @@ function createLeaves(startpoint) {
             };
             proba += 1
         }
-        // console.log(typeof(originArr))
         let uniqueSet = new Set(originArr)
         originArr = [...uniqueSet];
     };
     grow();
-    // console.log(typeof(originArr))
-    // console.log(originArr);
     return originArr;
 
     function chance(prob) {
@@ -293,8 +289,6 @@ function tileAction(tileID) {
         if (canReplant(tileID, tileIDmatrix)) {
             document.getElementById(tileID).className = `block ${selectedInventory.type}`;
 			minusInventory();			
-            //unselectInventories();
-            // isInventoryActive = false;
         } else {
             return;
         }
