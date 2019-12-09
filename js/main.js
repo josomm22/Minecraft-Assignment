@@ -230,7 +230,6 @@ function createLeaves(startpoint) {
                 try {
                     let adjacentBlock = checkAround(originArr[o], direction[i])
                     if (adjacentBlock.className === 'block') {
-                        // console.log (`${adjacentBlock.id} is a block`);
                         if (chance(proba)) {
                             originArr.push(adjacentBlock.id);
 
